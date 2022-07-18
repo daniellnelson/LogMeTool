@@ -13,6 +13,7 @@ namespace LogMeTool
 {
     public class Logging
     {
+        #region declarations
         private static readonly ILog log = LogManager.GetLogger(typeof(Logging));
         private string outputPath;
         public string OutputPath
@@ -27,6 +28,9 @@ namespace LogMeTool
             }
         }
 
+        /// <summary>
+        /// This constructor can be re-called within the context of your application to change the file output path. Example code to follow. DN 7/18/22
+        /// </summary>
         public Logging()
         {
             ChangeLogLevel(LogType.On);
@@ -42,7 +46,7 @@ namespace LogMeTool
             Utilities.Configuration.RefreshAppSettings();
             ChangeLogLevel(LogType.Off);
         }
-
+        #endregion
 
 
         public static void ChangeLogLevel(LogType type)
