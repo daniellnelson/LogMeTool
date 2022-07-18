@@ -1,6 +1,6 @@
 ﻿using log4net;
 using log4net.Core;
-using LogMeTool.Utilities;
+using LogMeTool.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,37 +15,6 @@ namespace LogMeTool
     {
         #region declarations
         private static readonly ILog log = LogManager.GetLogger(typeof(Logging));
-        private string outputPath;
-        public string OutputPath
-        {
-            get
-            {
-                return outputPath;
-            }
-            set
-            {
-                outputPath = value;
-            }
-        }
-
-        /// <summary>
-        /// This constructor can be re-called within the context of your application to change the file output path. Example code to follow. DN 7/18/22
-        /// </summary>
-        public Logging()
-        {
-            ChangeLogLevel(LogType.On);
-            string appConfigFilePath = string.Concat(Assembly.GetExecutingAssembly().Location, ".config");
-            Debug(appConfigFilePath);
-            string configPath = "logging.config";
-            Utilities.Configuration config = new Utilities.Configuration("//cars", "//file[@value='{0}']", configPath);
-            Utilities.Configuration.ChangeValueByKey(
-                                               key: "file",
-                                               value: OutputPath,
-                                               attributeForChange: "value",
-                                               config: config);
-            Utilities.Configuration.RefreshAppSettings();
-            ChangeLogLevel(LogType.Off);
-        }
         #endregion
 
 
